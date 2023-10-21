@@ -24,7 +24,7 @@
                             <option value="{{ $menu_year->year }}" @selected($selected_year == $menu_year->year)>{{ $menu_year->year }}</option>
                         @endforeach
                         </select>
-                        <button type="submit" class="btn btn-secondary bg-slate-500">Change</button>
+                        <button type="submit" class="btn btn-secondary bg-gray-500">Change</button>
                     </form>
                 </div>
             </div>
@@ -54,7 +54,6 @@
                 <th>Amount</th>
                 <th>Store Name</th>
                 <th>Description</th>
-                <th>User</th>
                 <th width="280px">Action</th>
             </tr>
             @foreach ($purchases[$key] as $purchase)
@@ -63,7 +62,6 @@
                 <td class="text-right">${{ $purchase->amount }}</td>
                 <td>{{ $purchase->store_name }}</td>
                 <td>{{ $purchase->description }}</td>
-                <td>{{ $purchase->user->name }}</td>
                 <td>
                     <form action="{{ route('purchases.destroy',$purchase->id) }}" method="Post">
         
@@ -102,7 +100,6 @@
 
         @endforeach
     
-        <a class="btn btn-info" href="{{ route('categories.index') }}">Categories</a>
 
     </div>
 

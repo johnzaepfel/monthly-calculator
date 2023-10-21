@@ -42,15 +42,13 @@
                     @csrf
                     @method('DELETE')
        
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger bg-red-600">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </table>
-   
-    <a class="btn btn-info" href="{{ route('purchases.index') }}">Purchases</a>
- 
+    
 </div>
 
 </x-app-layout>

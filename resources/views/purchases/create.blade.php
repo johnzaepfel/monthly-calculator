@@ -82,14 +82,11 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>User:</strong>
-                 <input type="text" name="user_id" class="form-control" placeholder="User ID">
-                @error('user_id')
-                  <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-               @enderror
+                {{ Auth::user()->name }} <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary ml-3">Submit</button>
+        <button type="submit" class="btn btn-primary ml-3 bg-blue-500">Submit</button>
     </div>
     
 </form>
