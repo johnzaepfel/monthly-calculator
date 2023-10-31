@@ -1,1 +1,0 @@
-alert("Show me the money!");
