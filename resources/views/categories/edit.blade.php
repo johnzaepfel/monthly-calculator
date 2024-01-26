@@ -25,21 +25,21 @@
                         @method('PUT')
                     
                         <div>
-                            <label for="name" class="block font-medium text-sm text-gray-700">Name:</strong>
+                            <label for="name" class="block font-medium text-sm text-gray-700">Name:</label>
                             <input type="text" name="name" value="{{ $category->name }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Category name">
                             @error('name')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
                         </div>
                         <div>
-                            <label for="name" class="block font-medium text-sm text-gray-700">Order:</strong>
+                            <label for="name" class="block font-medium text-sm text-gray-700">Order:</label>
                             <input type="number" name="order" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Category Order" value="{{ $category->order }}">
                             @error('order')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
                         </div>
                         <div>
-                            <label for="name" class="block font-medium text-sm text-gray-700">Budget Total:</strong>
+                            <label for="name" class="block font-medium text-sm text-gray-700">Budget Total:</label>
                             $<input type="number" name="budget_total" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Budget Total" value="{{ $category->budget_total }}">
                             @error('budget_total')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>

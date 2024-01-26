@@ -24,7 +24,7 @@
                         @csrf
                     
                         <div>
-                            <label for="name" class="block font-medium text-sm text-gray-700">Name:</strong>
+                            <label for="name" class="block font-medium text-sm text-gray-700">Name:</label>
                             <input type="text" name="name" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Category name">
                             @error('name')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
@@ -32,7 +32,7 @@
                         </div>
                 
                         <div>
-                            <label for="order" class="block font-medium text-sm text-gray-700">Category Order:</strong>
+                            <label for="order" class="block font-medium text-sm text-gray-700">Category Order:</label>
                             <input type="number" name="order" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Category Order" value="{{ $new_max_order }}">
                             @error('order')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div>
-                            <label for="budget_total" class="block font-medium text-sm text-gray-700">Budget Total:</strong>
+                            <label for="budget_total" class="block font-medium text-sm text-gray-700">Budget Total:</label>
                             $<input type="number" name="budget_total" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Budget Total">
                             @error('budget_total')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
