@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Purchase::class, 'purchase');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -33,16 +38,19 @@ class PurchaseController extends Controller
 
         $categories = Category::orderBy('order', 'asc')->get();
         $purchases = [];
+        $userId = Auth::id();
 
         foreach ($categories as $category) {
             $purchases[$category->id] = $category->purchases()
+                ->where('user_id', $userId)
                 ->whereYear('purchase_date', $selected_year)
                 ->whereMonth('purchase_date', $selected_month)
                 ->orderByDesc('purchase_date')
                 ->get();
         }
 
-        $menu_years = Purchase::selectRaw('YEAR(purchase_date) AS year')
+        $menu_years = Purchase::where('user_id', $userId)
+            ->selectRaw('YEAR(purchase_date) AS year')
             ->distinct()
             ->orderBy('year', 'asc')
             ->pluck('year');
