@@ -29,7 +29,7 @@
                                 <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="selected_month" for="selected_year">Year</label> 
                                 <select name="selected_year" id="selected_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                 @foreach($menu_years as $menu_year )
-                                    <option value="{{ $menu_year->year }}" @selected($selected_year == $menu_year->year)>{{ $menu_year->year }}</option>
+                                    <option value="{{ $menu_year }}" @selected($selected_year == $menu_year)>{{ $menu_year }}</option>
                                 @endforeach
                                 </select> 
                             </div>
