@@ -46,13 +46,14 @@
                     </div>
                 @endif
                 
-                @foreach ($categories as $key => $category)
+                @foreach ($categories as $category)
 
                 @php
                     $sub_total = 0;    
+                    $categoryPurchases = $purchases[$category->id] ?? collect();
                 @endphp
 
-                @if(count($purchases[$key])>0)
+                @if(count($categoryPurchases) > 0)
 
                 <table class="table w-full md:text-lg rounded mt-5 border-b">
                     <thead>
@@ -68,7 +69,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($purchases[$key] as $purchase)
+                        @foreach ($categoryPurchases as $purchase)
                         <tr>
                             <td class="table-cell py-2 sm:py-1 border-b border-slate-100 dark:border-slate-700">{{ date("M j", strtotime($purchase->purchase_date)) }}</td>
                             <td class="table-cell py-2 sm:py-1 border-b border-slate-100 dark:border-slate-700 text-right pr-5">${{ $purchase->amount }}</td>
