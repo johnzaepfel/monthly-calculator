@@ -16,6 +16,10 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
+Route::get('/', function () {
+    return redirect()->route('dashboard');
+});
+
 // Route::get('/', function () {
 //     return view('purchases.index');
 // });
