@@ -5,12 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use App\Models\Category;
-use App\Models\User;
 
 class Purchase extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'purchase_date',
+        'store_name',
+        'category_id',
+        'amount',
+        'description',
+    ];
+
+    protected $casts = [
+        'purchase_date' => 'date',
+        'amount' => 'integer',
+    ];
 
     public function category(): BelongsTo
     {
@@ -21,14 +32,4 @@ class Purchase extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    protected $fillable = [
-        'purchase_date',
-        'store_name',
-        'category_id',
-        'amount',
-        'description',
-        'user_id',
-    ];
-
 }

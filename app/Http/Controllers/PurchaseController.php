@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Purchase;
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Category;
+use App\Models\Purchase;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 
 class PurchaseController extends Controller
 {
@@ -23,46 +24,34 @@ class PurchaseController extends Controller
         //dd(date('n'));
 
         $request->validate([
-            'selected_year' => 'integer',//|size:4',
-            'selected_month' => 'integer',//|between:1,2',
+            'selected_year' => ['integer'],
+            'selected_month' => ['integer', 'between:1,12'],
         ]);
 
         $selected_year = $request->query('selected_year', date('Y'));
-
         $selected_month = $request->query('selected_month', date('n'));
 
-        $categories = Category::orderBy('order','asc')->get();
-        //dd($categories);
+        $categories = Category::orderBy('order', 'asc')->get();
+        $purchases = [];
 
-        foreach( $categories as $key => $category ) {
-
-            //dd($category);
-
-            $each_purchase = Purchase::where('category_id','=',$category->id)
-                                            ->whereMonth('purchase_date', $selected_month)
-                                            ->whereYear('purchase_date', $selected_year)
-                                            ->orderBy('purchase_date','desc')
-                                            ->get();
-            
-            $purchases[$key] = $each_purchase;
-            //var_dump($each_purchase);
-            //dd($each_purchase);
-
-            
+        foreach ($categories as $category) {
+            $purchases[$category->id] = $category->purchases()
+                ->whereYear('purchase_date', $selected_year)
+                ->whereMonth('purchase_date', $selected_month)
+                ->orderByDesc('purchase_date')
+                ->get();
         }
-                                            
-        $menu_years = Purchase::select(Purchase::raw("YEAR(purchase_date) as year"))
-                                    ->distinct()
-                                    ->orderBy('year','asc')
-                                    ->get();
 
-        return view('purchases.index')
-                ->with(compact('purchases'))
-                ->with(compact('categories'))
-                ->with(compact('menu_years'))
-                ->with(compact('selected_year'))
-                ->with(compact('selected_month'));
-    }
+        $menu_years = Purchase::selectRaw('YEAR(purchase_date) AS year')
+            ->distinct()
+            ->orderBy('year', 'asc')
+            ->pluck('year');
+
+        if ($menu_years->isEmpty()) {
+            $menu_years = collect([date('Y')]);
+        }
+
+        return view('purchases.index', compact('purchases', 'categories', 'menu_years', 'selected_year', 'selected_month'));    }
     
     /**
      * Show the form for creating a new resource.
@@ -84,33 +73,15 @@ class PurchaseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PurchaseRequest $request)
     {
+        $validated = $request->validated();
+        $validated['user_id'] = Auth::id();
 
-        $request->validate([
-            'purchase_date' => 'required',
-            'store_name' => 'required',
-            'category_id' => 'required',
-            'amount' => 'required',
-            'user_id' => 'required',
-        ]);
- 
-        $purchase = new Purchase;
- 
-        $purchase->purchase_date = $request->purchase_date;
-        $purchase->store_name = $request->store_name;
-        $purchase->category_id = $request->category_id;
-        $purchase->amount = $request->amount;
-        $purchase->description = $request->description;
-        $purchase->user_id = $request->user_id;
+        Purchase::create($validated);
 
-        //https://laravel.com/docs/10.x/authentication#retrieving-the-authenticated-user
- 
-        $purchase->save();
- 
-      
         return redirect()->route('purchases.index')
-                        ->with('success','Purchase has been created successfully.');
+            ->with('success', 'Purchase has been created successfully.');
     }
       
     /**
@@ -146,27 +117,12 @@ class PurchaseController extends Controller
      * @param  \App\Purchase  $purchase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PurchaseRequest $request, Purchase $purchase)
     {
-        $request->validate([
-            'purchase_date' => 'required',
-            'store_name' => 'required',
-            'category_id' => 'required',
-            'amount' => 'required',
-        ]);
-         
-        $purchase = Purchase::find($id);
- 
-        $purchase->purchase_date = $request->purchase_date;
-        $purchase->store_name = $request->store_name;
-        $purchase->category_id = $request->category_id;
-        $purchase->amount = $request->amount;
-        $purchase->description = $request->description;
- 
-        $purchase->save();
-     
+        $purchase->update($request->validated());
+
         return redirect()->route('purchases.index')
-                        ->with('success','Purchase Has Been updated successfully');
+            ->with('success', 'Purchase has been updated successfully');
     }
      
     /**

@@ -26,14 +26,14 @@
                     
                         <div>
                             <label for="purchase_date" class="block font-medium text-sm text-gray-700">Purchase Date:</label>
-                            <input type="date" name="purchase_date" value="{{ $purchase->purchase_date }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Purchase Date">
+                            <input type="date" name="purchase_date" value="{{ old('purchase_date', $purchase->purchase_date->format('Y-m-d')) }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Purchase Date">
                             @error('purchase_date')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
                         </div>
                         <div>
                             <label for="store_name" class="block font-medium text-sm text-gray-700">Store Name:</label>
-                            <input type="text" name="store_name" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Store Name" value="{{ $purchase->store_name }}">
+                            <input type="text" name="store_name" value="{{ old('store_name', $purchase->store_name) }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Store Name">
                             @error('store_name')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
@@ -51,7 +51,7 @@
                         </div>
                         <div>
                             <label for="amount" class="block font-medium text-sm text-gray-700">Amount:</label>
-                            $<input type="number" name="amount" value="{{ $purchase->amount }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Amount">
+                            $<input type="number" name="amount" value="{{ old('amount', $purchase->amount) }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Amount">
                             @error('amount')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
@@ -64,7 +64,7 @@
                             @enderror
                         </div>
                         <div>
-                            <label for="user_id" class="block font-medium text-sm text-gray-700">User:</label>
+                            <label class="block font-medium text-sm text-gray-700">User:</label>
                             {{ $purchase->user->name }}
                         </div>
                         

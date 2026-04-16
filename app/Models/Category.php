@@ -10,16 +10,20 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function purchases(): HasMany
-    {
-        return $this->hasMany(Purchase::class); 
-    }
-
     protected $fillable = [
         'name',
         'order',
         'budget_total',
     ];
 
+    protected $casts = [
+        'order' => 'integer',
+        'budget_total' => 'integer',
+    ];
+
+    public function purchases(): HasMany
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }
 

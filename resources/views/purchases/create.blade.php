@@ -26,7 +26,7 @@
                     
                         <div>
                             <label for="purchase_date" class="block font-medium text-sm text-gray-700">Purchase Date:</label>
-                            <input type="date" name="purchase_date" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Purchase Date">
+                            <input type="date" name="purchase_date" value="{{ old('purchase_date') }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Purchase Date">
                             @error('purchase_date')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
@@ -34,7 +34,7 @@
                 
                         <div>
                             <label for="store_name" class="block font-medium text-sm text-gray-700">Store Name:</label>
-                            <input type="text" name="store_name" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Store Name">
+                            <input type="text" name="store_name" value="{{ old('store_name') }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Store Name">
                             @error('store_name')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
@@ -43,8 +43,8 @@
                         <div>
                             <label for="category_id" class="block font-medium text-sm text-gray-700">Category:</label>
                             <select name="category_id" id="category_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
-                                @foreach($categories as $category )
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach($categories as $category)
+                                <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -54,7 +54,7 @@
                 
                         <div>
                             <label for="amount" class="block font-medium text-sm text-gray-700">Amount:</label>
-                            $<input type="number" name="amount" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Amount">
+                            $<input type="number" name="amount" value="{{ old('amount') }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Amount">
                             @error('amount')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
@@ -62,15 +62,15 @@
                 
                         <div>
                             <label for="description" class="block font-medium text-sm text-gray-700">Description:</label>
-                            <input type="text" name="description" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Description">
+                            <input type="text" name="description" value="{{ old('description') }}" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full" placeholder="Description">
                             @error('description')
                             <div class="text-rose-600 dark:text-rose-500 text-sm">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div>
-                            <label for="user_id" class="block font-medium text-sm text-gray-700">User:</label>
-                            {{ Auth::user()->name }} <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <label class="block font-medium text-sm text-gray-700">User:</label>
+                            {{ Auth::user()->name }}
                         </div>
 
                         <button type="submit" class="px-4 py-2 text-sm text-white bg-blue-700 font-semibold rounded border border-blue-800 hover:text-blue-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2">Submit</button>
