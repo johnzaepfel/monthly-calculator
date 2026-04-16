@@ -1,4 +1,4 @@
-<p align="center"><a href="./Z.svg" target="_blank"><img src="./Z.svg" width="400" alt="Monthly Calculator Logo"></a></p>
+<p align="center"><a href="./Z.svg" target="_blank"><img src="./Z.svg" width="100" alt="Monthly Calculator Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
