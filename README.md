@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center"><a href="./Z.svg" target="_blank"><img src="./Z.svg" width="400" alt="Monthly Calculator Logo"></a></p>
 
 <p align="center">
 <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
@@ -6,6 +6,58 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
+## Monthly Calculator
+
+`monthly-calculator` is a simple Laravel web application for tracking monthly spending by category. Authenticated users can create categories, log purchases, and review expense totals by month and year.
+
+### How it works
+
+- Users register or sign in to access their personal monthly budget dashboard.
+- Categories are defined once and used to group purchases.
+- Purchases capture amount, date, category, and optional description.
+- The app summarizes spending by month and provides a category breakdown for each reporting period.
+- Data is persisted in a MySQL database via Laravel migrations and Eloquent models.
+
+### Local setup
+
+1. Copy the example environment file:
+   ```bash
+   cp .env.example .env
+   ```
+2. Install PHP dependencies:
+   ```bash
+   composer install
+   ```
+3. Generate the application key:
+   ```bash
+   php artisan key:generate
+   ```
+4. Configure database settings in `.env`:
+   - `DB_DATABASE`
+   - `DB_USERNAME`
+   - `DB_PASSWORD`
+   - `DB_HOST`
+   - `DB_PORT`
+5. Run the database migrations:
+   ```bash
+   php artisan migrate
+   ```
+6. Start the development server:
+   ```bash
+   php artisan serve
+   ```
+7. Open the app in your browser:
+   ```text
+   http://127.0.0.1:8000
+   ```
+
+### Usage
+
+- Register a new account or login with an existing user.
+- Create categories such as `Rent`, `Groceries`, or `Utilities`.
+- Add purchases with an amount, date, and selected category.
+- Review monthly totals and category summaries from the dashboard.
 
 ## About Laravel
 
