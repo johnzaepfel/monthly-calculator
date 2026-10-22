@@ -19,38 +19,65 @@
 - The app summarizes spending by month and provides a category breakdown for each reporting period.
 - Data is persisted in a MySQL database via Laravel migrations and Eloquent models.
 
+### Requirements
+
+- PHP 8.3 or newer, with Laravel's required extensions and PDO MySQL.
+- Composer 2.
+- Node.js 22.12+ (22.x) or 24+, and npm.
+- MySQL 8+ for application data; automated tests use an isolated SQLite database.
+- A modern browser supported by Tailwind 4 (Safari 16.4+, Chrome 111+, Firefox 128+).
+
 ### Local setup
 
-1. Copy the example environment file:
-   ```bash
-   cp .env.example .env
-   ```
-2. Install PHP dependencies:
-   ```bash
-   composer install
-   ```
-3. Generate the application key:
-   ```bash
-   php artisan key:generate
-   ```
-4. Configure database settings in `.env`:
-   - `DB_DATABASE`
-   - `DB_USERNAME`
-   - `DB_PASSWORD`
-   - `DB_HOST`
-   - `DB_PORT`
-5. Run the database migrations:
-   ```bash
-   php artisan migrate
-   ```
-6. Start the development server:
-   ```bash
-   php artisan serve
-   ```
-7. Open the app in your browser:
-   ```text
-   http://127.0.0.1:8000
-   ```
+```bash
+cp .env.example .env
+composer install
+php artisan key:generate
+npm ci
+npm run build
+```
+
+Set the database connection and mail settings in `.env`, then run:
+
+```bash
+php artisan migrate
+php artisan serve
+```
+
+Open http://127.0.0.1:8000. For frontend development, run `npm run dev` in a separate terminal.
+
+### Verification and maintenance
+
+```bash
+composer validate --strict
+composer audit
+npm audit
+npm run build
+php artisan test
+```
+
+Tests force an in-memory SQLite connection and do not use your application database.
+GitHub Actions runs these checks on PHP 8.3, 8.4, and 8.5. Dependabot checks Composer,
+npm, and GitHub Actions dependencies weekly. Laravel is on version 13; Tailwind is
+on version 4. Composer resolves dependencies for PHP 8.3 to retain compatibility
+with the minimum supported version.
+
+### Deployment
+
+GitHub stores the source and runs CI. A running Laravel application requires a PHP
+hosting service and a database; GitHub Pages cannot execute Laravel.
+
+On the application server, use PHP 8.3+ and set the web root to `public/`. Keep
+`.env` out of Git, set `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL` to the
+HTTPS URL, and configure the database and mail service. Preserve the existing
+`APP_KEY` when updating an existing installation. Back up the database before
+running migrations.
+
+Build assets using `npm ci && npm run build` and deploy `public/build/` with the
+application. Install PHP dependencies using
+`composer install --no-dev --optimize-autoloader`, then run
+`php artisan migrate --force` and `php artisan optimize`. Make `storage/` and
+`bootstrap/cache/` writable by the web server. Restart queue workers if used.
 
 ### Usage
 

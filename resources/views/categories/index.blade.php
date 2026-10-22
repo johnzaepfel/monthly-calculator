@@ -7,11 +7,11 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white shadow-sm sm:rounded-lg">
                 <div class="max-w-3xl m-auto">
 
                     <div class="mb-4 md:text-right md:text-lg">
-                        <a class="px-4 py-2 text-sm text-white bg-purple-700 font-semibold rounded border border-purple-800 hover:text-purple-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" href="{{ route('categories.create') }}"> Create Category</a>
+                        <a class="px-4 py-2 text-sm text-white bg-purple-700 font-semibold rounded border border-purple-800 hover:text-purple-600 hover:bg-zinc-300 hover:border-transparent focus:outline-hidden focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" href="{{ route('categories.create') }}"> Create Category</a>
                     </div>
                     
                     @if ($message = Session::get('success'))
@@ -36,7 +36,7 @@
                                 <div class="table-cell border-b border-slate-100 dark:border-slate-700 pl-2 pr-0 text-center">{{ $category->order }}</div>
                                 <div class="table-cell border-b border-slate-100 dark:border-slate-700 pl-0 pr-4 text-right">${{ $category->budget_total }}</div>
                                 <div class="table-cell border-b border-slate-100 dark:border-slate-700 py-2 px-2">
-                                    <a class="px-3 py-1 text-sm text-white bg-green-700 font-semibold rounded border border-green-800 hover:text-green-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2" href="{{ route('categories.edit',$category->id) }}">Edit</a>
+                                    <a class="px-3 py-1 text-sm text-white bg-green-700 font-semibold rounded border border-green-800 hover:text-green-600 hover:bg-zinc-300 hover:border-transparent focus:outline-hidden focus:ring-2 focus:ring-green-600 focus:ring-offset-2" href="{{ route('categories.edit',$category->id) }}">Edit</a>
                                 </div>
                             </div>
                             @endforeach

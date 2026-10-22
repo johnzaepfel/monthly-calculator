@@ -7,11 +7,11 @@
      
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white shadow-sm sm:rounded-lg">
                 <div class="max-w-3xl m-auto">
 
                     <div class="mb-8 md:text-right md:text-lg">
-                        <a class="px-4 py-2 text-sm text-white bg-purple-700 font-semibold rounded border border-purple-800 hover:text-purple-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" href="{{ route('purchases.create') }}"> Create Purchase</a>
+                        <a class="px-4 py-2 text-sm text-white bg-purple-700 font-semibold rounded border border-purple-800 hover:text-purple-600 hover:bg-zinc-300 hover:border-transparent focus:outline-hidden focus:ring-2 focus:ring-purple-600 focus:ring-offset-2" href="{{ route('purchases.create') }}"> Create Purchase</a>
                     </div>
                     
 
@@ -19,7 +19,7 @@
                         <div class="flex flex-wrap -mx-3 mb-2">
                             <div class="w-1/3 px-3 mb-4 inline-block">
                                 <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="selected_month">Month</label> 
-                                <select name="selected_month" id="selected_month" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <select name="selected_month" id="selected_month" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-hidden focus:bg-white focus:border-gray-500">
                                 @for($month = 1; $month <= 12; $month++ )
                                     <option value="{{ $month }}" @selected($selected_month == $month)>{{ $month }}</option>
                                 @endfor
@@ -27,14 +27,14 @@
                             </div>
                             <div class="w-1/3 px-3 mb-4 inline-block">
                                 <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="selected_month" for="selected_year">Year</label> 
-                                <select name="selected_year" id="selected_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                <select name="selected_year" id="selected_year" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-hidden focus:bg-white focus:border-gray-500">
                                 @foreach($menu_years as $menu_year )
                                     <option value="{{ $menu_year }}" @selected($selected_year == $menu_year)>{{ $menu_year }}</option>
                                 @endforeach
                                 </select> 
                             </div>
                             <div class="w-1/3 px-3 mb-4 mt-6 inline-block align-baseline">
-                                <button type="submit" class="px-4 py-2 text-sm text-white bg-gray-700 font-semibold rounded border border-gray-800 hover:text-gray-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2">Change</button>
+                                <button type="submit" class="px-4 py-2 text-sm text-white bg-gray-700 font-semibold rounded border border-gray-800 hover:text-gray-600 hover:bg-zinc-300 hover:border-transparent focus:outline-hidden focus:ring-2 focus:ring-gray-600 focus:ring-offset-2">Change</button>
                             </div>
                         </div>
                     </form>
@@ -78,12 +78,12 @@
                             <td class="table-cell py-2 sm:py-1 border-b border-slate-100 dark:border-slate-700 text-center whitespace-nowrap">
                                 <form action="{{ route('purchases.destroy',$purchase->id) }}" method="Post">
                     
-                                    <a class="px-3 py-2 text-sm text-white bg-green-700 font-semibold rounded border border-green-800 hover:text-green-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2" href="{{ route('purchases.edit',$purchase->id) }}">Edit</a>
+                                    <a class="px-3 py-2 text-sm text-white bg-green-700 font-semibold rounded border border-green-800 hover:text-green-600 hover:bg-zinc-300 hover:border-transparent focus:outline-hidden focus:ring-2 focus:ring-green-600 focus:ring-offset-2" href="{{ route('purchases.edit',$purchase->id) }}">Edit</a>
                     
                                     @csrf
                                     @method('DELETE')
                     
-                                    <button type="submit" class="hidden sm:inline px-3 py-2 h-9 text-sm text-white bg-red-700 font-semibold rounded border border-red-800 hover:text-red-600 hover:bg-zinc-300 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2">Delete</button>
+                                    <button type="submit" class="hidden sm:inline px-3 py-2 h-9 text-sm text-white bg-red-700 font-semibold rounded border border-red-800 hover:text-red-600 hover:bg-zinc-300 hover:border-transparent focus:outline-hidden focus:ring-2 focus:ring-red-600 focus:ring-offset-2">Delete</button>
                                 </form>
                             </td>
                         </tr>
